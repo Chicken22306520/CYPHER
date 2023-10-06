@@ -1,0 +1,50 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def ddos_attack(target_ip, target_port, attack_duration):
+    # Implement your DDoS attack logic here
+    pass
+
+def start_attack():
+    target_ip = ip_entry.get()
+    target_port = int(port_entry.get())
+    attack_duration = int(duration_entry.get())
+
+    try:
+        messagebox.showinfo("DDoS Attack", f"Attacking {target_ip}:{target_port} for {attack_duration} seconds...")
+        ddos_attack(target_ip, target_port, attack_duration)
+        messagebox.showinfo("DDoS Attack", "Attack completed!")
+    except Exception as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
+
+root = tk.Tk()
+root.title("DDoS Attack Tool")
+
+# Custom styles
+root.option_add("*TButton*Font", ("Helvetica", 12))
+root.option_add("*TButton*Padding", 10)
+root.option_add("*TEntry*Font", ("Helvetica", 12))
+root.option_add("*TEntry*Foreground", "blue")
+
+frame = tk.Frame(root, padx=20, pady=20)
+frame.pack(padx=20, pady=20)
+
+ip_label = tk.Label(frame, text="Target IP:")
+ip_label.grid(row=0, column=0, sticky=tk.W)
+ip_entry = tk.Entry(frame)
+ip_entry.grid(row=0, column=1)
+
+port_label = tk.Label(frame, text="Target Port:")
+port_label.grid(row=1, column=0, sticky=tk.W)
+port_entry = tk.Entry(frame)
+port_entry.grid(row=1, column=1)
+
+duration_label = tk.Label(frame, text="Attack Duration (seconds):")
+duration_label.grid(row=2, column=0, sticky=tk.W)
+duration_entry = tk.Entry(frame)
+duration_entry.grid(row=2, column=1)
+
+start_button = tk.Button(frame, text="Start Attack", command=start_attack)
+start_button.grid(row=3, column=0, columnspan=2, pady=20)
+
+root.mainloop()
